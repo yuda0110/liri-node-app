@@ -1,6 +1,9 @@
 require('dotenv').config();
 const keys = require('./keys.js');
 const axios = require('axios');
+const moment = require('moment');
+
+// moment().format();
 
 // ===== COMMANDS =====
 // concert-this
@@ -58,7 +61,7 @@ request.then((res) => {
     // Venue location
     console.log(`Venue location: ${event.venue.city}, ${event.venue.region}, ${event.venue.country}`);
     // Date of the Event (use moment to format this as "MM/DD/YYYY")
-    console.log(`Date of the event: ${event.datetime}`);
+    console.log(`Date of the event: ${moment(event.datetime).format('MM/DD/YYYY')}`);
     console.log('\n');
   })
 
