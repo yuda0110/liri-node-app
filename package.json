@@ -12,5 +12,9 @@
   },
   "keywords": [],
   "author": "Yuko Uda",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0"
+  }
 }
