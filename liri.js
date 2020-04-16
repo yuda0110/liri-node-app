@@ -19,7 +19,7 @@ const searchNameArr = process.argv.slice(3);
 console.log(searchNameArr);
 
 const nameWithPlus = searchNameArr.join('+');
-const nameWithSpace = searchNameArr.join(' ');
+let nameWithSpace = searchNameArr.join(' ');
 
 
 // node liri.js concert-this <artist/band name here>
@@ -118,11 +118,99 @@ const spotifyThis = (songName) => {
     });
 };
 
+
+// node liri.js movie-this '<movie name here>'
+const movieThis = (movieTitle) => {
+  // If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody'.
+  const movieTitleProvided = movieTitle ? true : false;
+
+  if (!movieTitleProvided) {
+    movieTitle = 'Mr. Nobody';
+    nameWithSpace = 'Mr. Nobody';
+  }
+
+  const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilogy`;
+  console.log(`omdbQueryURL: ${omdbQueryURL}`);
+
+  const request = axios.get(omdbQueryURL)
+    .catch((error) => {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log("---------------Data---------------");
+        console.log(error.response.data);
+        console.log("---------------Status---------------");
+        console.log(error.response.status);
+        console.log("---------------Headers---------------");
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an object that comes back with details pertaining to the error that occurred.
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    });
+
+  // If the request with axios is successful
+  // request.then(console.log);
+
+  request.then((res) => {
+    console.log(`============= ${nameWithSpace.toUpperCase()}'s INFO ===============\n`);
+
+    const movieData = res.data;
+
+    if (!movieData.Title) {
+      console.log('Sorry, the movie you typed in doesn\'t exist in the database.');
+      return;
+    }
+
+    // Title of the movie.
+    console.log(`Title: ${movieData.Title}`);
+
+    // Year the movie came out.
+    console.log(`Year: ${movieData.Year}`);
+
+    let imdbRating = '';
+    let rottenTomatoesRating = '';
+    movieData.Ratings.forEach(item => {
+      if (item.Source.toLowerCase() === 'Internet Movie Database'.toLowerCase()) {
+        imdbRating = item.Value;
+      } else if (item.Source.toLowerCase() === 'Rotten Tomatoes'.toLowerCase()) {
+        rottenTomatoesRating = item.Value;
+      }
+    });
+    // IMDB Rating of the movie.
+    console.log(`IMDB Rating: ${imdbRating}`);
+
+    // Rotten Tomatoes Rating of the movie.
+    console.log(`Rotten Tomatoes Rating: ${rottenTomatoesRating}`);
+
+    // Country where the movie was produced.
+    console.log(`Country: ${movieData.Country}`);
+
+    // Language of the movie.
+    console.log(`Language: ${movieData.Language}`);
+
+    // Plot of the movie.
+    console.log(`Plot: ${movieData.Plot}`);
+
+    // Actors in the movie.
+    console.log(`Actors: ${movieData.Actors}`);
+  });
+};
+
+
 switch (command) {
   case 'concert-this':
     concertThis(nameWithPlus);
     break;
   case 'spotify-this-song':
     spotifyThis(nameWithSpace);
+    break;
+  case 'movie-this':
+    movieThis(nameWithPlus);
     break;
 }
