@@ -3,8 +3,8 @@ const keys = require('./keys.js');
 const axios = require('axios');
 const moment = require('moment');
 const Spotify = require('node-spotify-api');
+const fs = require('fs');
 
-// moment().format();
 
 // ===== COMMANDS =====
 // concert-this
@@ -14,17 +14,17 @@ const Spotify = require('node-spotify-api');
 
 
 const command = process.argv[2];
-const searchNameArr = process.argv.slice(3);
+const searchedNameArr = process.argv.slice(3);
 
-console.log(searchNameArr);
+console.log(searchedNameArr);
 
-const nameWithPlus = searchNameArr.join('+');
-let nameWithSpace = searchNameArr.join(' ');
+const wordsWithPlus = (arr) => arr.join('+');
+const wordsWithSpace = (arr) => arr.join(' ');
 
 
 // node liri.js concert-this <artist/band name here>
-const concertThis = (artist) => {
-  const concertQueryURL = `https://rest.bandsintown.com/artists/${artist}/events?app_id=codingbootcamp`;
+const concertThis = artistName => {
+  const concertQueryURL = `https://rest.bandsintown.com/artists/${artistName}/events?app_id=codingbootcamp`;
   console.log(`concertQueryURL: ${concertQueryURL}`);
 
   const request = axios.get(concertQueryURL)
@@ -53,9 +53,17 @@ const concertThis = (artist) => {
 // request.then(console.log);
 
   request.then((res) => {
-    console.log(`============= ${nameWithSpace.toUpperCase()}'s EVENTS INFO ===============\n`);
+    const artistNameUppercase = artistName.toUpperCase();
+    const eventData = res.data;
 
-    res.data.forEach((event) => {
+    if (eventData.length === 0) {
+      console.log(`${artistNameUppercase} doesn't have any event scheduled at this moment.`)
+      return;
+    }
+
+    console.log(`============= ${artistNameUppercase}'s EVENTS INFO ===============\n`);
+
+    eventData.forEach((event) => {
       // Name of the venue
       console.log(`Name of the venue: ${event.venue.name}`);
       // Venue location
@@ -70,7 +78,7 @@ const concertThis = (artist) => {
 
 
 // node liri.js spotify-this-song '<song name here>'
-const spotifyThis = (songName) => {
+const spotifyThis = songName => {
   const spotify = new Spotify(keys.spotify);
 
   // If no song is provided then your program will default to "The Sign" by Ace of Base.
@@ -120,13 +128,12 @@ const spotifyThis = (songName) => {
 
 
 // node liri.js movie-this '<movie name here>'
-const movieThis = (movieTitle) => {
+const movieThis = movieTitle => {
   // If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody'.
   const movieTitleProvided = movieTitle ? true : false;
 
   if (!movieTitleProvided) {
     movieTitle = 'Mr. Nobody';
-    nameWithSpace = 'Mr. Nobody';
   }
 
   const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilogy`;
@@ -158,7 +165,7 @@ const movieThis = (movieTitle) => {
   // request.then(console.log);
 
   request.then((res) => {
-    console.log(`============= ${nameWithSpace.toUpperCase()}'s INFO ===============\n`);
+    console.log(`============= ${movieTitle.toUpperCase()}'s INFO ===============\n`);
 
     const movieData = res.data;
 
@@ -203,14 +210,42 @@ const movieThis = (movieTitle) => {
 };
 
 
-switch (command) {
-  case 'concert-this':
-    concertThis(nameWithPlus);
-    break;
-  case 'spotify-this-song':
-    spotifyThis(nameWithSpace);
-    break;
-  case 'movie-this':
-    movieThis(nameWithPlus);
-    break;
+// node liri.js do-what-it-says
+const doWhatItSays = () => {
+  fs.readFile('random.txt', 'utf8', (error, data) => {
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    const dataArr = data.split(', ');
+    dataArr.forEach(function (item) {
+      console.log(item);
+    })
+
+    executeCommand(dataArr[0], dataArr[1]);
+
+  });
 }
+
+function executeCommand(command, searchedTerm) {
+  searchedTerm = Array.isArray(searchedTerm) ? wordsWithSpace(searchedTerm) : searchedTerm;
+  switch (command) {
+    case 'concert-this':
+      concertThis(searchedTerm);
+      break;
+    case 'spotify-this-song':
+      spotifyThis(searchedTerm);
+      break;
+    case 'movie-this':
+      movieThis(searchedTerm);
+      break;
+    case 'do-what-it-says':
+      doWhatItSays();
+      break;
+    default:
+      console.log('The command you entered doesn\'t exit.');
+  }
+}
+
+executeCommand(command, searchedNameArr);
