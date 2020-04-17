@@ -24,6 +24,11 @@ const wordsWithSpace = (arr) => arr.join(' ');
 
 // node liri.js concert-this <artist/band name here>
 const concertThis = artistName => {
+  if (!artistName) {
+    console.log('Please enter an artist name that you\'d like to search events for.');
+    return;
+  }
+
   const concertQueryURL = `https://rest.bandsintown.com/artists/${artistName}/events?app_id=codingbootcamp`;
   console.log(`concertQueryURL: ${concertQueryURL}`);
 
@@ -85,7 +90,8 @@ const spotifyThis = songName => {
   const songNameProvided = songName ? true : false;
 
   if (!songNameProvided) {
-    songName = 'The Sign'
+    songName = 'The Sign';
+    console.log('You didn\'t enter a song name. Here is a song for you.');
   }
 
   spotify
@@ -134,6 +140,7 @@ const movieThis = movieTitle => {
 
   if (!movieTitleProvided) {
     movieTitle = 'Mr. Nobody';
+    console.log('You didn\'t enter a movie title. Here is a movie for you.');
   }
 
   const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilogy`;
