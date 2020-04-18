@@ -256,6 +256,9 @@ const movieThis = movieTitle => {
 
 // node liri.js do-what-it-says
 const doWhatItSays = () => {
+  let log = `Command: ${commands.do}\n`;
+  writeLog(log);
+
   fs.readFile('random.txt', 'utf8', (error, data) => {
     if (error) {
       console.log(error);
@@ -268,7 +271,6 @@ const doWhatItSays = () => {
     })
 
     executeCommand(dataArr[0], dataArr[1]);
-
   });
 };
 
