@@ -25,6 +25,6 @@ module.exports = function() {
     console.log(output);
     log += output;
     writeLog.write(log);
-    process.exit();
+    // process.exit();
   }
 };

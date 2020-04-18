@@ -1,12 +1,11 @@
-const axios = require('axios');
-const moment = require('moment');
 const fs = require('fs');
-
 const ConcertThis = require('./components/concert-this');
 const SpotifyThis = require('./components/spotify-this');
+const MovieThis = require('./components/movie-this');
 
 const concertThis = new ConcertThis();
 const spotifyThis = new SpotifyThis();
+const movieThis = new MovieThis();
 
 // ===== COMMANDS =====
 // concert-this
@@ -181,6 +180,7 @@ const spotifyThis = songName => {
 };
 */
 
+/*
 // node liri.js movie-this '<movie name here>'
 const movieThis = movieTitle => {
   let output = '';
@@ -259,6 +259,7 @@ const movieThis = movieTitle => {
     writeLog(log);
   });
 };
+*/
 
 // node liri.js do-what-it-says
 const doWhatItSays = () => {
@@ -290,7 +291,7 @@ function executeCommand(command, searchedTerm) {
       spotifyThis.findSong(searchedTerm);
       break;
     case commands.movie:
-      movieThis(searchedTerm);
+      movieThis.findMovie(searchedTerm);
       break;
     case commands.do:
       doWhatItSays();

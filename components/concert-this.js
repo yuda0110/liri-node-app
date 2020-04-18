@@ -12,6 +12,7 @@ const axiosError = new AxiosError();
 module.exports = function() {
   let output = '';
   let log = `Command: ${commands.concert}\n`;
+  let errorFlag = false;
 
   this.findConcert = function(artistName) {
     if (!artistName) {
@@ -28,10 +29,15 @@ module.exports = function() {
     const request = axios.get(concertQueryURL)
       .catch((error) => {
         axiosError.log(error, output, log);
+        errorFlag = true;
       });
 
     // If the request with axios is successful
     request.then((res) => {
+      if (errorFlag) {
+        return;
+      }
+
       const artistNameUppercase = artistName.toUpperCase();
       const eventData = res.data;
 

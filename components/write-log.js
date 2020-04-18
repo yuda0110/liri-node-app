@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports = function(text) {
+module.exports = function() {
   const separator = '\n====================================\n\n';
   this.write = function(text) {
     fs.appendFile('./log.txt', `${text}${separator}`, function(err) {
