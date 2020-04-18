@@ -28,6 +28,30 @@ console.log(searchedNameArr);
 const wordsWithPlus = (arr) => arr.join('+');
 const wordsWithSpace = (arr) => arr.join(' ');
 
+const axiosErrorHandling = (error, output, log) => {
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    output += "---------------Data---------------\n";
+    output += `${JSON.stringify(error.response.data, null, 2)}\n`;
+    output += "---------------Status---------------\n";
+    output += `${error.response.status}\n`;
+    output += "---------------Headers---------------\n";
+    output += `${JSON.stringify(error.response.headers, null, 2)}\n`;
+  } else if (error.request) {
+    // The request was made but no response was received
+    // `error.request` is an object that comes back with details pertaining to the error that occurred.
+    output += `${JSON.stringify(error.request, null, 2)}\n`;
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    output += `Error: ${error.message}\n`;
+  }
+  output += `${JSON.stringify(error.config, null, 2)}\n`;
+  console.log(output);
+  log += output;
+  writeLog(log);
+};
+
 const writeLog = (log) => {
   fs.appendFile('./log.txt', `${log}\n`, (err) => {
     if (err) {
@@ -40,8 +64,14 @@ const writeLog = (log) => {
 
 // node liri.js concert-this <artist/band name here>
 const concertThis = artistName => {
+  let output = '';
+  let log = `Command: ${commands.concert}\n`;
+
   if (!artistName) {
-    console.log('Please enter an artist name that you\'d like to search events for.');
+    output += 'Please enter an artist name that you\'d like to search events for.\n';
+    log += output;
+    console.log(output);
+    writeLog(log);
     return;
   }
 
@@ -50,56 +80,46 @@ const concertThis = artistName => {
 
   const request = axios.get(concertQueryURL)
     .catch((error) => {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log("---------------Data---------------");
-        console.log(error.response.data);
-        console.log("---------------Status---------------");
-        console.log(error.response.status);
-        console.log("---------------Headers---------------");
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an object that comes back with details pertaining to the error that occurred.
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
+      axiosErrorHandling(error, output, log);
     });
 
-// If the request with axios is successful
-// request.then(console.log);
-
+  // If the request with axios is successful
   request.then((res) => {
     const artistNameUppercase = artistName.toUpperCase();
     const eventData = res.data;
 
     if (eventData.length === 0) {
-      console.log(`${artistNameUppercase} doesn't have any event scheduled at this moment.`)
+      output += `${artistNameUppercase} doesn't have any event scheduled at this moment.\n`;
+      log += output;
+      console.log(output);
+      writeLog(log);
       return;
     }
 
-    console.log(`============= ${artistNameUppercase}'s EVENTS INFO ===============\n`);
+    output += `============= ${artistNameUppercase}'s EVENTS INFO ===============\n`;
 
     eventData.forEach((event) => {
       // Name of the venue
-      console.log(`Name of the venue: ${event.venue.name}`);
+      output += `Name of the venue: ${event.venue.name}\n`;
       // Venue location
-      console.log(`Venue location: ${event.venue.city}, ${event.venue.region}, ${event.venue.country}`);
+      output += `Venue location: ${event.venue.city}, ${event.venue.region}, ${event.venue.country}\n`;
       // Date of the Event (use moment to format this as "MM/DD/YYYY")
-      console.log(`Date of the event: ${moment(event.datetime).format('MM/DD/YYYY')}`);
-      console.log('\n');
+      output += `Date of the event: ${moment(event.datetime).format('MM/DD/YYYY')}\n`;
+      output += '\n';
     })
 
+    console.log(output);
+    log += output;
+    writeLog(log);
   });
 };
 
 
 // node liri.js spotify-this-song '<song name here>'
 const spotifyThis = songName => {
+  let output = '';
+  let log = `Command: ${commands.spotify}\n`;
+
   const spotify = new Spotify(keys.spotify);
 
   // If no song is provided then your program will default to "The Sign" by Ace of Base.
@@ -107,7 +127,7 @@ const spotifyThis = songName => {
 
   if (!songNameProvided) {
     songName = 'The Sign';
-    console.log('You didn\'t enter a song name. Here is a song for you.');
+    output += 'You didn\'t enter a song name. Here is a song for you.\n';
   }
 
   spotify
@@ -128,23 +148,29 @@ const spotifyThis = songName => {
       }
 
       if (itemsArr.length <= 0) {
-        console.log(`Sorry, no result found for ${songName}.`);
+        output += `Sorry, no result found for ${songName}.\n`;
       } else {
         itemsArr.forEach((item) => {
           // Artist(s)
-          console.log(`Artist(s): ${item.artists[0].name}`);
+          output += `Artist(s): ${item.artists[0].name}\n`;
           // The song's name
-          console.log(`The song's name: ${item.name}`);
+          output += `The song's name: ${item.name}\n`;
           // A preview link of the song from Spotify
-          console.log(`Preview link: ${item.preview_url}`);
+          output += `Preview link: ${item.preview_url}\n`;
           // The album that the song is from
-          console.log(`The album: ${item.album.name}`);
-          console.log('\n');
+          output += `The album: ${item.album.name}\n`;
+          output += '\n';
         });
       }
+      console.log(output);
+      log += output;
+      writeLog(log);
     })
     .catch(function(err) {
-      console.log(err);
+      output += `${JSON.stringify(err, null, 2)}\n\n`;
+      console.log(output);
+      log += output;
+      writeLog(log);
     });
 };
 
@@ -162,32 +188,12 @@ const movieThis = movieTitle => {
     output += 'You didn\'t enter a movie title. Here is a movie for you.\n';
   }
 
-  const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilog`;
+  const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilogy`;
   console.log(`omdbQueryURL: ${omdbQueryURL}`);
 
   const request = axios.get(omdbQueryURL)
     .catch((error) => {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        output += "---------------Data---------------\n";
-        output += `${JSON.stringify(error.response.data, null, 2)}\n`;
-        output += "---------------Status---------------\n";
-        output += `${error.response.status}\n`;
-        output += "---------------Headers---------------\n";
-        output += `${JSON.stringify(error.response.headers, null, 2)}\n`;
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an object that comes back with details pertaining to the error that occurred.
-        output += `${JSON.stringify(error.request, null, 2)}\n`;
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        output += `Error: ${error.message}\n`;
-      }
-      output += `${JSON.stringify(error.config, null, 2)}\n`;
-      console.log(output);
-      log += output;
-      writeLog(log);
+      axiosErrorHandling(error, output, log);
     });
 
   // If the request with axios is successful
@@ -264,7 +270,7 @@ const doWhatItSays = () => {
     executeCommand(dataArr[0], dataArr[1]);
 
   });
-}
+};
 
 function executeCommand(command, searchedTerm) {
   searchedTerm = Array.isArray(searchedTerm) ? wordsWithSpace(searchedTerm) : searchedTerm;
