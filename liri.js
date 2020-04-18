@@ -5,6 +5,9 @@ const moment = require('moment');
 const Spotify = require('node-spotify-api');
 const fs = require('fs');
 
+const SpotifyThis = require('./components/spotify-this');
+const spotifyThis = new SpotifyThis();
+
 
 // ===== COMMANDS =====
 // concert-this
@@ -52,6 +55,7 @@ const axiosErrorHandling = (error, output, log) => {
   writeLog(log);
 };
 
+/*
 const writeLog = (log) => {
   fs.appendFile('./log.txt', `${log}\n`, (err) => {
     if (err) {
@@ -60,7 +64,7 @@ const writeLog = (log) => {
     console.log('Log added!');
   });
 };
-
+*/
 
 // node liri.js concert-this <artist/band name here>
 const concertThis = artistName => {
@@ -114,7 +118,7 @@ const concertThis = artistName => {
   });
 };
 
-
+/*
 // node liri.js spotify-this-song '<song name here>'
 const spotifyThis = songName => {
   let output = '';
@@ -173,7 +177,7 @@ const spotifyThis = songName => {
       writeLog(log);
     });
 };
-
+*/
 
 // node liri.js movie-this '<movie name here>'
 const movieThis = movieTitle => {
@@ -281,7 +285,7 @@ function executeCommand(command, searchedTerm) {
       concertThis(searchedTerm);
       break;
     case commands.spotify:
-      spotifyThis(searchedTerm);
+      spotifyThis.findSong(searchedTerm);
       break;
     case commands.movie:
       movieThis(searchedTerm);
