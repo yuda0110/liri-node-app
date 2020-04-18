@@ -8,7 +8,7 @@ const writeLog = new WriteLog();
 const commands = new Commands();
 
 // node liri.js spotify-this-song '<song name here>'
-module.exports = function(songName) {
+module.exports = function() {
   let output = '';
   let log = `Command: ${commands.spotify}\n`;
 

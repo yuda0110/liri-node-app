@@ -1,13 +1,12 @@
-require('dotenv').config();
-const keys = require('./keys.js');
 const axios = require('axios');
 const moment = require('moment');
-const Spotify = require('node-spotify-api');
 const fs = require('fs');
 
+const ConcertThis = require('./components/concert-this');
 const SpotifyThis = require('./components/spotify-this');
-const spotifyThis = new SpotifyThis();
 
+const concertThis = new ConcertThis();
+const spotifyThis = new SpotifyThis();
 
 // ===== COMMANDS =====
 // concert-this
@@ -31,6 +30,7 @@ console.log(searchedNameArr);
 const wordsWithPlus = (arr) => arr.join('+');
 const wordsWithSpace = (arr) => arr.join(' ');
 
+/*
 const axiosErrorHandling = (error, output, log) => {
   if (error.response) {
     // The request was made and the server responded with a status code
@@ -54,8 +54,8 @@ const axiosErrorHandling = (error, output, log) => {
   log += output;
   writeLog(log);
 };
+*/
 
-/*
 const writeLog = (log) => {
   fs.appendFile('./log.txt', `${log}\n`, (err) => {
     if (err) {
@@ -64,8 +64,8 @@ const writeLog = (log) => {
     console.log('Log added!');
   });
 };
-*/
 
+/*
 // node liri.js concert-this <artist/band name here>
 const concertThis = artistName => {
   let output = '';
@@ -100,7 +100,7 @@ const concertThis = artistName => {
       return;
     }
 
-    output += `============= ${artistNameUppercase}'s EVENTS INFO ===============\n`;
+    output += `---------------- ${artistNameUppercase}'s EVENTS INFO ----------------\n`;
 
     eventData.forEach((event) => {
       // Name of the venue
@@ -117,6 +117,8 @@ const concertThis = artistName => {
     writeLog(log);
   });
 };
+*/
+
 
 /*
 // node liri.js spotify-this-song '<song name here>'
@@ -282,7 +284,7 @@ function executeCommand(command, searchedTerm) {
   searchedTerm = Array.isArray(searchedTerm) ? wordsWithSpace(searchedTerm) : searchedTerm;
   switch (command) {
     case commands.concert:
-      concertThis(searchedTerm);
+      concertThis.findConcert(searchedTerm);
       break;
     case commands.spotify:
       spotifyThis.findSong(searchedTerm);
