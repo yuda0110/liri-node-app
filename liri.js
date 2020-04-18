@@ -16,10 +16,26 @@ const fs = require('fs');
 const command = process.argv[2];
 const searchedNameArr = process.argv.slice(3);
 
+const commands = {
+  concert: 'concert-this',
+  spotify: 'spotify-this-song',
+  movie: 'movie-this',
+  do: 'do-what-it-says'
+};
+
 console.log(searchedNameArr);
 
 const wordsWithPlus = (arr) => arr.join('+');
 const wordsWithSpace = (arr) => arr.join(' ');
+
+const writeLog = (log) => {
+  fs.appendFile('./log.txt', `${log}\n`, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Log added!');
+  });
+};
 
 
 // node liri.js concert-this <artist/band name here>
@@ -135,15 +151,18 @@ const spotifyThis = songName => {
 
 // node liri.js movie-this '<movie name here>'
 const movieThis = movieTitle => {
+  let output = '';
+  let log = `Command: ${commands.movie}\n`;
+
   // If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody'.
   const movieTitleProvided = movieTitle ? true : false;
 
   if (!movieTitleProvided) {
     movieTitle = 'Mr. Nobody';
-    console.log('You didn\'t enter a movie title. Here is a movie for you.');
+    output += 'You didn\'t enter a movie title. Here is a movie for you.\n';
   }
 
-  const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilogy`;
+  const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilog`;
   console.log(`omdbQueryURL: ${omdbQueryURL}`);
 
   const request = axios.get(omdbQueryURL)
@@ -151,41 +170,47 @@ const movieThis = movieTitle => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.log("---------------Data---------------");
-        console.log(error.response.data);
-        console.log("---------------Status---------------");
-        console.log(error.response.status);
-        console.log("---------------Headers---------------");
-        console.log(error.response.headers);
+        output += "---------------Data---------------\n";
+        output += `${JSON.stringify(error.response.data, null, 2)}\n`;
+        output += "---------------Status---------------\n";
+        output += `${error.response.status}\n`;
+        output += "---------------Headers---------------\n";
+        output += `${JSON.stringify(error.response.headers, null, 2)}\n`;
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an object that comes back with details pertaining to the error that occurred.
-        console.log(error.request);
+        output += `${JSON.stringify(error.request, null, 2)}\n`;
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.log("Error", error.message);
+        output += `Error: ${error.message}\n`;
       }
-      console.log(error.config);
+      output += `${JSON.stringify(error.config, null, 2)}\n`;
+      console.log(output);
+      log += output;
+      writeLog(log);
     });
 
   // If the request with axios is successful
   // request.then(console.log);
 
   request.then((res) => {
-    console.log(`============= ${movieTitle.toUpperCase()}'s INFO ===============\n`);
+    output += `============= ${movieTitle.toUpperCase()}'s INFO ===============\n`;
 
     const movieData = res.data;
 
     if (!movieData.Title) {
-      console.log('Sorry, the movie you typed in doesn\'t exist in the database.');
+      output += 'Sorry, the movie you typed in doesn\'t exist in the database.';
+      log += output;
+      console.log(output);
+      writeLog(log)
       return;
     }
 
     // Title of the movie.
-    console.log(`Title: ${movieData.Title}`);
+    output += `Title: ${movieData.Title}\n`;
 
     // Year the movie came out.
-    console.log(`Year: ${movieData.Year}`);
+    output += `Year: ${movieData.Year}\n`;
 
     let imdbRating = '';
     let rottenTomatoesRating = '';
@@ -196,26 +221,32 @@ const movieThis = movieTitle => {
         rottenTomatoesRating = item.Value;
       }
     });
+
     // IMDB Rating of the movie.
-    console.log(`IMDB Rating: ${imdbRating}`);
+    output += `IMDB Rating: ${imdbRating}\n`;
 
     // Rotten Tomatoes Rating of the movie.
-    console.log(`Rotten Tomatoes Rating: ${rottenTomatoesRating}`);
+    output += `Rotten Tomatoes Rating: ${rottenTomatoesRating}\n`;
 
     // Country where the movie was produced.
-    console.log(`Country: ${movieData.Country}`);
+    output += `Country: ${movieData.Country}\n`;
 
     // Language of the movie.
-    console.log(`Language: ${movieData.Language}`);
+    output += `Language: ${movieData.Language}\n`;
 
     // Plot of the movie.
-    console.log(`Plot: ${movieData.Plot}`);
+    output += `Plot: ${movieData.Plot}\n`;
 
     // Actors in the movie.
-    console.log(`Actors: ${movieData.Actors}`);
+    output += `Actors: ${movieData.Actors}\n`;
+
+    console.log(output);
+
+    log += output;
+
+    writeLog(log);
   });
 };
-
 
 // node liri.js do-what-it-says
 const doWhatItSays = () => {
@@ -238,16 +269,16 @@ const doWhatItSays = () => {
 function executeCommand(command, searchedTerm) {
   searchedTerm = Array.isArray(searchedTerm) ? wordsWithSpace(searchedTerm) : searchedTerm;
   switch (command) {
-    case 'concert-this':
+    case commands.concert:
       concertThis(searchedTerm);
       break;
-    case 'spotify-this-song':
+    case commands.spotify:
       spotifyThis(searchedTerm);
       break;
-    case 'movie-this':
+    case commands.movie:
       movieThis(searchedTerm);
       break;
-    case 'do-what-it-says':
+    case commands.do:
       doWhatItSays();
       break;
     default:
