@@ -32,16 +32,18 @@ const wordsWithSpace = (arr) => arr.join(' ');
 // node liri.js do-what-it-says
 const doWhatItSays = () => {
   let log = `Command: ${commands.do}\n`;
-  writeLog.write(log);
+  let output = '';
 
   fs.readFile('random.txt', 'utf8', (error, data) => {
     if (error) {
-      console.log(error);
+      output += JSON.stringify(error);
+      log += output;
+      console.log(output);
+      writeLog.write(log);
       return;
     }
 
     const dataArr = data.split(', ');
-
     executeCommand(dataArr[0], dataArr[1]);
   });
 };
