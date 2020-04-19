@@ -22,9 +22,8 @@ module.exports = function() {
       output += `Error: ${error.message}\n`;
     }
     output += `${JSON.stringify(error.config, null, 2)}\n`;
-    console.log(output);
     log += output;
-    writeLog.write(log);
+    writeLog.write(output, log);
     // process.exit();
   }
 };

@@ -23,7 +23,6 @@ module.exports = function() {
     }
 
     const omdbQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=&plot=short&apikey=trilogy`;
-    console.log(`omdbQueryURL: ${omdbQueryURL}`);
 
     const request = axios.get(omdbQueryURL)
       .catch((error) => {
@@ -44,10 +43,9 @@ module.exports = function() {
       const movieData = res.data;
 
       if (!movieData.Title) {
-        output += 'Sorry, the movie you typed in doesn\'t exist in the database.';
+        output += 'Sorry, the movie you typed in doesn\'t exist in the database.\n';
         log += output;
-        console.log(output);
-        writeLog.write(log);
+        writeLog.write(output, log);
         return;
       }
 
@@ -85,11 +83,8 @@ module.exports = function() {
       // Actors in the movie.
       output += `Actors: ${movieData.Actors}\n`;
 
-      console.log(output);
-
       log += output;
-
-      writeLog.write(log);
+      writeLog.write(output, log);
     });
   }
 };

@@ -26,7 +26,6 @@ module.exports = function() {
     spotify
       .search({ type: 'track', query: songName })
       .then(function(response) {
-        // console.log(response.tracks.items);
         const items = response.tracks.items;
         let itemsArr = [];
 
@@ -55,15 +54,13 @@ module.exports = function() {
             output += '\n';
           });
         }
-        console.log(output);
         log += output;
-        writeLog.write(log);
+        writeLog.write(output, log);
       })
       .catch(function(err) {
-        output += `${JSON.stringify(err, null, 2)}\n\n`;
-        console.log(output);
+        output += `${JSON.stringify(err, null, 2)}\n`;
         log += output;
-        writeLog.write(log);
+        writeLog.write(output, log);
       });
   }
 };

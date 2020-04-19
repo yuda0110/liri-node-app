@@ -25,8 +25,6 @@ const commands = {
   do: 'do-what-it-says'
 };
 
-console.log(searchedNameArr);
-
 const wordsWithSpace = (arr) => arr.join(' ');
 
 // node liri.js do-what-it-says
@@ -38,8 +36,7 @@ const doWhatItSays = () => {
     if (error) {
       output += JSON.stringify(error);
       log += output;
-      console.log(output);
-      writeLog.write(log);
+      writeLog.write(output, log);
       return;
     }
 

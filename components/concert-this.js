@@ -18,13 +18,11 @@ module.exports = function() {
     if (!artistName) {
       output += 'Please enter an artist name that you\'d like to search events for.\n';
       log += output;
-      console.log(output);
-      writeLog.write(log);
+      writeLog.write(output, log);
       return;
     }
 
     const concertQueryURL = `https://rest.bandsintown.com/artists/${artistName}/events?app_id=codingbootcamp`;
-    console.log(`concertQueryURL: ${concertQueryURL}`);
 
     const request = axios.get(concertQueryURL)
       .catch((error) => {
@@ -44,8 +42,7 @@ module.exports = function() {
       if (eventData.length === 0) {
         output += `${artistNameUppercase} doesn't have any event scheduled at this moment.\n`;
         log += output;
-        console.log(output);
-        writeLog.write(log);
+        writeLog.write(output, log);
         return;
       }
 
@@ -61,9 +58,8 @@ module.exports = function() {
         output += '\n';
       });
 
-      console.log(output);
       log += output;
-      writeLog.write(log);
+      writeLog.write(output, log);
     });
   }
 };
