@@ -9,8 +9,6 @@ LIRI will be a command line node app that takes in parameters and gives you back
 ### Links
 - [Link to the code](https://github.com/yuda0110/liri-node-app)
 
-### Demo
-![Giphy Api Screenshot](./assets/images/screenshot.jpg)
 
 ### Tech/framework used
 
@@ -55,6 +53,8 @@ Renders the following information about each event to the terminal, and writes l
 * Venue location
 * Date of the Event (use moment to format this as "MM/DD/YYYY")
 
+###### Demo
+![Liri Bot concert-this](./images/concert.gif)
 
 2.`node liri.js spotify-this-song <song name here>`
 
@@ -67,6 +67,8 @@ Renders the following information  about the song to the terminal, and writes lo
 
 If no song is provided then the program will default to "The Sign" by Ace of Base.
 
+###### Demo
+![Liri Bot spotify-this-song](./images/spotify.gif)
 
 3.`node liri.js movie-this <movie name here>`
 
@@ -83,6 +85,8 @@ Renders the following information about the movie to the terminal, and writes lo
 
 If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
 
+###### Demo
+![Liri Bot movie-this](./images/movie.gif)
 
 4.`node liri.js do-what-it-says`
 
@@ -92,4 +96,6 @@ LIRI will take the text inside of random.txt and then use it to call one of LIRI
 `spotify-this-song`
 `movie-this`
 
+###### Demo
+![Liri Bot do-what-it-says](./images/do.gif)
 

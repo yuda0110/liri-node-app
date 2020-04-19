@@ -1,0 +1,429 @@
+Command: concert-this
+---------------- PITBULL's EVENTS INFO ----------------
+Name of the venue: Zappos Theater
+Venue location: Las Vegas, NV, United States
+Date of the event: 04/22/2020
+
+Name of the venue: Zappos Theater
+Venue location: Las Vegas, NV, United States
+Date of the event: 04/24/2020
+
+Name of the venue: Zappos Theater
+Venue location: Las Vegas, NV, United States
+Date of the event: 04/25/2020
+
+Name of the venue: Nugget Casino Resort
+Venue location: Sparks, NV, United States
+Date of the event: 05/23/2020
+
+Name of the venue: Laughlin Event Center
+Venue location: Laughlin, NV, United States
+Date of the event: 05/24/2020
+
+Name of the venue: Mississippi Valley Fairgrounds
+Venue location: Davenport, IA, United States
+Date of the event: 08/08/2020
+
+Name of the venue: Wolf Trap Foundation for the Performing Arts
+Venue location: Vienna, VA, United States
+Date of the event: 08/30/2020
+
+Name of the venue: Zappos Theater
+Venue location: Las Vegas, NV, United States
+Date of the event: 09/10/2020
+
+Name of the venue: Zappos Theater
+Venue location: Las Vegas, NV, United States
+Date of the event: 09/11/2020
+
+
+====================================
+
+Command: concert-this
+Please enter an artist name that you'd like to search events for.
+
+====================================
+
+Command: concert-this
+---------------Data---------------
+{
+  "errorMessage": "[NotFound] The artist was not found"
+}
+---------------Status---------------
+404
+---------------Headers---------------
+{
+  "content-type": "application/json",
+  "content-length": "58",
+  "connection": "close",
+  "date": "Sun, 19 Apr 2020 01:34:22 GMT",
+  "x-amzn-requestid": "424cf771-795e-4f85-a79d-17d6cfae53f2",
+  "access-control-allow-origin": "*",
+  "x-amz-apigw-id": "LNeYsFSxoAMFaPA=",
+  "x-amzn-trace-id": "Root=1-5e9baa9d-e4cb31b8b105bd3092ca2286;Sampled=0",
+  "x-cache": "Error from cloudfront",
+  "via": "1.1 eaf5cf20e530df46eabc6f43f9564604.cloudfront.net (CloudFront)",
+  "x-amz-cf-pop": "LAX3-C4",
+  "x-amz-cf-id": "1o_UQwx8vz1neRCt8eu1VVliO4UTWQ_1v01FcyzVX6tI3bLHs3NuvA=="
+}
+{
+  "url": "https://rest.bandsintown.com/artists/einiapnepgian/events?app_id=codingbootcamp",
+  "method": "get",
+  "headers": {
+    "Accept": "application/json, text/plain, */*",
+    "User-Agent": "axios/0.19.2"
+  },
+  "transformRequest": [
+    null
+  ],
+  "transformResponse": [
+    null
+  ],
+  "timeout": 0,
+  "xsrfCookieName": "XSRF-TOKEN",
+  "xsrfHeaderName": "X-XSRF-TOKEN",
+  "maxContentLength": -1
+}
+
+====================================
+
+Command: spotify-this-song
+Artist(s): Lea Salonga
+The song's name: A Whole New World - From "Aladdin" / Soundtrack Version
+Preview link: null
+The album: Aladdin Special Edition
+
+Artist(s): Mena Massoud
+The song's name: A Whole New World
+Preview link: null
+The album: Aladdin (Original Motion Picture Soundtrack)
+
+Artist(s): Love Falk
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/6e66d752b13bca6ee76da09098042dd40aca44b0?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: A Whole New World
+
+Artist(s): ZAYN
+The song's name: A Whole New World (End Title) - From "Aladdin"
+Preview link: null
+The album: A Whole New World (End Title) [From "Aladdin"]
+
+Artist(s): Mingmei Hsueh
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/87269bc256f1dce62c0620e9a6768a7c5f976074?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: My Dream
+
+Artist(s): ZAYN
+The song's name: A Whole New World (End Title)
+Preview link: null
+The album: Aladdin (Original Motion Picture Soundtrack)
+
+Artist(s): Lea Salonga
+The song's name: A Whole New World
+Preview link: null
+The album: Aladdin (Original Motion Picture Soundtrack)
+
+Artist(s): Rockabye Lullaby
+The song's name: A Whole New World - Aladdin
+Preview link: https://p.scdn.co/mp3-preview/d573bd2b60d0124ed4d8bcdd39c56f7030685501?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Disney Lullabies
+
+Artist(s): Purple Tulips
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/a4f4d702e9caf8252326af3ceea44395a64ee6a0?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Piano Songs
+
+Artist(s): Disney Peaceful Piano
+The song's name: A Whole New World
+Preview link: null
+The album: Disney Peaceful Piano: Lullaby
+
+Artist(s): Jesse Nielsen
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/a35065f4e7771335339f24bc4e4bd25853680465?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Lullabies on Music Box
+
+Artist(s): Peabo Bryson
+The song's name: A Whole New World (Aladdin's Theme)
+Preview link: https://p.scdn.co/mp3-preview/61dea0c7fc0a43ae96c9712e2d4a12260ca0be7d?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Passion
+
+Artist(s): Relax α Wave
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/30c4dbe8cac83c4a86ad545e2ce545f82a1ae436?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Deep Sleep Music - The Best of Disney: Relaxing Piano Covers
+
+Artist(s): Lullabyes
+The song's name: A Whole New World (Aladdin)
+Preview link: https://p.scdn.co/mp3-preview/11176158fd279491df816bbb499331d715ce8b18?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Disney Lullabyes
+
+Artist(s): Adam Jacobs
+The song's name: A Whole New World
+Preview link: null
+The album: Aladdin Original Broadway Cast Recording
+
+Artist(s): Boyce Avenue
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/1a4ae3f662b017c6f5993d2d9fcfe49364e73020?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: A Whole New World
+
+Artist(s): Jon Sarta
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/b7e84c0f0ef7dbbbf90c0182e4e3e91948ec6500?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Disney Piano Classics
+
+Artist(s): Fred Mollin
+The song's name: A Whole New World
+Preview link: null
+The album: Princess Lullaby: Soothing Instrumental Lullabies For Little Princesses
+
+Artist(s): Nazareno Aversa
+The song's name: A Whole New World
+Preview link: https://p.scdn.co/mp3-preview/bb276af3ae38abf72627e8b3f2676cf9346a8945?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Piano Cover 3
+
+Artist(s): David Huntsinger
+The song's name: A Whole New World
+Preview link: null
+The album: Wish Upon A Star
+
+
+====================================
+
+Command: spotify-this-song
+You didn't enter a song name. Here is a song for you.
+Artist(s): Ace of Base
+The song's name: The Sign
+Preview link: https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: The Sign
+
+
+====================================
+
+Command: spotify-this-song
+Sorry, no result found for eniapnienga.
+
+====================================
+
+
+Command: movie-this
+-------------- THE NOTEBOOK's INFO --------------
+Title: The Notebook
+Year: 2004
+IMDB Rating: 7.8/10
+Rotten Tomatoes Rating: 53%
+Country: USA
+Language: English
+Plot: A poor yet passionate young man falls in love with a rich young woman, giving her a sense of freedom, but they are soon separated because of their social differences.
+Actors: Tim Ivey, Gena Rowlands, Starletta DuPois, James Garner
+
+====================================
+
+Command: movie-this
+You didn't enter a movie title. Here is a movie for you.
+-------------- MR. NOBODY's INFO --------------
+Title: Mr. Nobody
+Year: 2009
+IMDB Rating: 7.8/10
+Rotten Tomatoes Rating: 67%
+Country: Belgium, Germany, Canada, France, UK, Luxembourg
+Language: English, Mohawk
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+
+====================================
+
+Command: movie-this
+-------------- NEIAPNINIEPANB's INFO --------------
+Sorry, the movie you typed in doesn't exist in the database.
+
+====================================
+
+Command: spotify-this-song
+Artist(s): Backstreet Boys
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: The Hits--Chapter One
+
+Artist(s): Mick Jensen
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/f8181f66713983fab073e133e23c741acbe00d75?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: I Want It That Way
+
+Artist(s): Anthem Lights
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/4a163fbfa2dbbe4433f277e0e7395dca656364f5?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Covers Part IV
+
+Artist(s): Tyler and Mark
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/99c791194bbd4e5f315ca8964babf0b69bc520b3?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Beautiful Dreams
+
+Artist(s): Dynamite Boy
+The song's name: I Want It That Way
+Preview link: null
+The album: Punk Goes Pop
+
+Artist(s): Anthem Lights
+The song's name: I Want It That Way / Bye Bye Bye
+Preview link: https://p.scdn.co/mp3-preview/82b2ff786fedce4e1a314d69f15ff5c705049ef5?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: I Want It That Way / Bye Bye Bye
+
+Artist(s): Ryan Tenner
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/9c9217848c811676226a09cf721f27f102588521?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Pop Piano Covers
+
+Artist(s): Steel Panther
+The song's name: I Want It That Way
+Preview link: null
+The album: I Want It That Way
+
+Artist(s): Jess and Gabriel
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/cc50bfee8d34ec92fda4109243c7ef0e6856f185?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Under the Covers, Vol. 3
+
+Artist(s): Scary Pockets
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/33685e005149d5e7d0199a764163ff77f7762e29?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Nu Funk
+
+Artist(s): Backstreet Boys
+The song's name: I Want It That Way - Reimagined
+Preview link: https://p.scdn.co/mp3-preview/7f612d6ba66571500e981e74bb36e14b9906be77?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: I Want It That Way (Reimagined)
+
+Artist(s): Manuel Costa
+The song's name: I Want It That Way - Manuel's Southbeat Mix
+Preview link: null
+The album: I Want It That Way (The Remixes)
+
+Artist(s): Boyce Avenue
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/764f1dcb8c9a9cec099cc361cb388f931bf023d3?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Cover Sessions, Vol. 2
+
+Artist(s): Cassidy Janson
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/6df704bcaee02f82fefacbfaaca2ab8858119947?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: & Juliet (Original London Cast Recording)
+
+Artist(s): Zita
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/2ce29a5a3beb747bb223e2f48c6b9139ff46f8fd?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: I Want It That Way
+
+Artist(s): Manuel Costa
+The song's name: I Want It That Way
+Preview link: null
+The album: Stay Home Drink Wine
+
+Artist(s): Scott Bradlee's Postmodern Jukebox
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/53296f4b689baaa0be6d94e8720c044e98d4b3e3?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: Selfies on Kodachrome
+
+Artist(s): Yshop
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/8d1287b933d37b96943a5041ebcd46c328c9a0ce?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: I Want It That Way
+
+Artist(s): Landon Austin & Julia Sheer
+The song's name: I Want It That Way
+Preview link: https://p.scdn.co/mp3-preview/e777be5446dc3df34abc2eaec241edb5a590976c?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: I Want It That Way
+
+Artist(s): Oliver Tompsett
+The song's name: I Want It That Way - Reprise
+Preview link: https://p.scdn.co/mp3-preview/a09ef57f7e6bfb7de66cb5c3b6d68d215f388d45?cid=c8faf17969d5455c949eb0c6a3dbcb93
+The album: & Juliet (Original London Cast Recording)
+
+
+====================================
+
+Command: concert-this
+KATY PERRY doesn't have any event scheduled at this moment.
+
+====================================
+
+Command: concert-this
+---------------- TAYLOR SWIFT's EVENTS INFO ----------------
+Name of the venue: Streaming LIVE
+Venue location: , , 
+Date of the event: 04/18/2020
+
+Name of the venue: Werchter Boutique
+Venue location: Rotselaar, , Belgium
+Date of the event: 06/20/2020
+
+Name of the venue: Waldbühne Berlin
+Venue location: Berlin, , Germany
+Date of the event: 06/24/2020
+
+Name of the venue: Oslo Sommertid
+Venue location: Oslo, , Norway
+Date of the event: 06/26/2020
+
+Name of the venue: Roskilde Festival
+Venue location: Roskilde, , Denmark
+Date of the event: 07/01/2020
+
+Name of the venue: Open’er Festival
+Venue location: Powiat Pucki, , Poland
+Date of the event: 07/03/2020
+
+Name of the venue: Festival de Nîmes
+Venue location: Nîmes, , France
+Date of the event: 07/05/2020
+
+Name of the venue: NOS Alive
+Venue location: Algés, , Portugal
+Date of the event: 07/09/2020
+
+Name of the venue: Hyde Park
+Venue location: London, , United Kingdom
+Date of the event: 07/11/2020
+
+Name of the venue: [POSTPONED] Allianz Parque | São Paulo
+Venue location: Sao Paulo, , Brazil
+Date of the event: 07/18/2020
+
+Name of the venue: [POSTPONED] Allianz Parque | São Paulo
+Venue location: Sao Paulo, , Brazil
+Date of the event: 07/19/2020
+
+Name of the venue: [POSTPONED] Lover Fest West
+Venue location: Los Angeles, CA, United States
+Date of the event: 07/25/2020
+
+Name of the venue: [POSTPONED] Lover Fest West
+Venue location: Los Angeles, CA, United States
+Date of the event: 07/26/2020
+
+Name of the venue: [POSTPONED] Lover Fest East
+Venue location: Foxborough, MA, United States
+Date of the event: 07/31/2020
+
+Name of the venue: [POSTPONED] Lover Fest East
+Venue location: Foxborough, MA, United States
+Date of the event: 08/01/2020
+
+
+====================================
+
+Command: movie-this
+-------------- AVENGERS's INFO --------------
+Title: The Avengers
+Year: 2012
+IMDB Rating: 8.0/10
+Rotten Tomatoes Rating: 92%
+Country: USA
+Language: English, Russian, Hindi
+Plot: Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.
+Actors: Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth
+
+====================================
+
